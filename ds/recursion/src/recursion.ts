@@ -1,8 +1,38 @@
 // TODO: FILL THIS IN
 //
 // THIS IS FOR YOU
-function recurseTheMaze(map: string[][], seen: boolean[][], r: number, c: number): boolean {
-    throw new Error("You need to fill this in or change the `runYours` variable to `false` for the logging walk.");
+function recurseTheMaze(
+	map: string[][], 
+	seen: boolean[][], 
+	r: number, 
+	c: number
+): boolean {
+	if(r<0||r>=map.length||c<0||c>map[0].length){
+		return !1
+	}
+	if(map[r][c]=='*'){
+		return !1
+	}
+	if(seen[r][c]){
+		return !1
+	}
+	if(map[r][c] == 'E'){
+		return !0;
+	}
+	seen[r][c]=!0;
+	if(recurseTheMaze(map,seen,r-1,c)){
+		return !0;
+	}
+	if(recurseTheMaze(map,seen,r,c-1)){
+		return !0;
+	}
+	if(recurseTheMaze(map,seen,r+1,c)){
+		return !0;
+	}
+	if(recurseTheMaze(map,seen,r,c+1)){
+		return !0;
+	}
+	return !1;
 }
 
 
